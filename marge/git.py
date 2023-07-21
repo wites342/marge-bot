@@ -25,7 +25,7 @@ def _filter_branch_script(trailer_name, trailer_values):
                 '{}: {}'.format(trailer_name, trailer_value)
                 for trailer_value in trailer_values or [''])
         ),
-        script=trailerfilter.__file__,
+        script=trailerfilter.__file__,  
     )
     return filter_script
 
