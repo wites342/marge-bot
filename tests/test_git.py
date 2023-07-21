@@ -180,6 +180,18 @@ class TestRepo:
         self.repo.get_commit_hash(rev='master')
         assert get_calls(mocked_run)[-1] == 'git -C /tmp/local/path rev-parse master'
 
+    def test_is_ancestor_of_current_head(self, mocked_run):
+        mocked_run.return_value = mocked_stdout(b'')
+
+        expected_sha = "7sdfghja7"
+
+        result = self.repo.is_ancestor_of_current_head(expected_sha)
+        assert result is True
+
+        assert get_calls(mocked_run) == [
+            'git -C /tmp/local/path merge-base --is-ancestor 7sdfghja7 HEAD',
+        ]
+
     def test_passes_ssh_key(self, mocked_run):
         repo = self.repo._replace(ssh_key_file='/foo/id_rsa')
         repo.config_user_info('bart', 'bart@gmail.com')
