@@ -20,7 +20,7 @@ GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no "
 
 def _filter_branch_script(trailer_name, trailer_values):
     filter_script = 'TRAILERS={trailers} python3 {script}'.format(
-        trailers=shlex.quote(
+        trailers=shlex.quote(  
             '\n'.join(
                 '{}: {}'.format(trailer_name, trailer_value)
                 for trailer_value in trailer_values or [''])
