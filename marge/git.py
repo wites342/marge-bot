@@ -154,6 +154,16 @@ class Repo(namedtuple('Repo', 'remote_url local_path ssh_key_file timeout refere
         """Return commit hash for `rev` (default "HEAD")."""
         result = self.git('rev-parse', rev)
         return result.stdout.decode('ascii').strip()
+    
+    def is_ancestor_of_current_head(self, expected_sha: str):
+        """Return True if given commit is ancestor of current HEAD."""
+        result = self.git('marge-base', "--is-ancestor", expected_sha, "HEAD")
+        
+        if result.stdout.decode('ascii').strip():
+            log.info(f"Given commit {expected_sha} is ancestor of current HEAD.")
+            return True
+        
+        return False
 
     def get_remote_url(self, name):
         return self.git('config', '--get', 'remote.{}.url'.format(name)).stdout.decode('utf-8').strip()
