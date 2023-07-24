@@ -6,7 +6,7 @@
     - Feature: Allow running marge-bot in CI pipelines or as a single CLI job #289
     - Fix: Bump urllib3 from 1.26.4 to 1.26.5 #310
     - Fix: Bump urllib3 from 1.26.3 to 1.26.4 #306
-    - Fix: Upgrade dependencies and fix lints and tests #305
+    - Fix: Upgrade dependencies and fix lints and tests #305 
     - Fix: AccessLevel enum matches GitLab docs #294
   * 0.9.5:
     - Feature: Add new choice `assigned_at` to option `merge_order` #268
